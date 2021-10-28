@@ -4,7 +4,12 @@
 
 int main() {
     int p;
+    printf("p=");
     scanf("%i", &p);
+    printf("iter:\n");
     NumPrint(p);
-    RecNumPrint(p);
+    printf("\nrecursion:\n");
+    RecNumPrint(p, 0);
+    printf("\nrevers recursion:\n");
+    RecNumPrintRevers(p);
 }

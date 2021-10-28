@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/cSosi/Lab11.3/PrintNums.c
+C:/cSosi/Lab11.3/main.c
 stdio.h
 -
 nums.h

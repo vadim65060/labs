@@ -5,10 +5,11 @@
 #ifndef LAB11_3_NUMS_H
 #define LAB11_3_NUMS_H
 
-char num[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
 void NumPrint(int p);
 
-void RecNumPrint(int p);
+void RecNumPrintRevers(int p);
+
+void RecNumPrint(int p, int i);
 
 #endif //LAB11_3_NUMS_H
