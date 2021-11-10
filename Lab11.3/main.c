@@ -3,13 +3,15 @@
 
 
 int main() {
-    int p;
+    int n, p;
+    printf("n=");
+    scanf("%i", &n);
     printf("p=");
     scanf("%i", &p);
     printf("iter:\n");
-    NumPrint(p);
+    NumPrint(n, p);
     printf("\nrecursion:\n");
-    RecNumPrint(p, 0);
+    RecNumPrint(n, p);
     printf("\nrevers recursion:\n");
-    RecNumPrintRevers(p);
+    RecNumPrintRevers(n, p);
 }

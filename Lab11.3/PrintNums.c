@@ -3,28 +3,27 @@
 
 const char num[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-void NumPrint(int p) {
-    for (int i = p - 1; i >= 0; --i) {
-        printf("%c ", num[i]);
+
+void NumPrint(int n, int p) {
+    while (n) {
+        printf("%c ", num[n % p]);
+        n /= p;
     }
-    printf("\n");
 }
 
-void RecNumPrintRevers(int p) {
-    if (p == 0) {
-        printf("\n");
+void RecNumPrintRevers(int n, int p) {
+    if (!n) {
         return;
     }
-    printf("%c ", num[p - 1]);
-    RecNumPrintRevers(p - 1);
+    printf("%c ", num[n % p]);
+    RecNumPrintRevers(n / p, p);
 }
 
 
-void RecNumPrint(int p, int i) {
-    if (i == p) {
-        printf("\n");
+void RecNumPrint(int n, int p) {
+    if (!n) {
         return;
     }
-    printf("%c ", num[i]);
-    RecNumPrint(p, i + 1);
+    RecNumPrint(n / p, p);
+    printf("%c ", num[n % p]);
 }
