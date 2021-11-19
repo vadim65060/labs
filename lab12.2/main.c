@@ -2,7 +2,7 @@
 #include "ArrayProcessing.h"
 
 int main() {
-    int n;
+    size_t n;
     printf("12.2)n=");
     scanf("%i", &n);
     int a[n];
