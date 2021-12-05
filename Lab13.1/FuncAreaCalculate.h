@@ -7,6 +7,12 @@
 
 #include "Functions.h"
 
-double AreaCalculate(struct funcdata data, double l, double r, size_t n);
+typedef double (*AreaCalculateFunc)(struct funcdata, double, double, size_t);
+
+double AreaCalculateLeftRectangle(struct funcdata data, double l, double r, size_t n);
+
+double AreaCalculateMiddleRectangle(struct funcdata data, double l, double r, size_t n);
+
+double AreaCalculateForEps(struct funcdata data, double l, double r, double eps, AreaCalculateFunc areaCalculateFunc);
 
 #endif //LAB13_1_FUNCAREACALCULATE_H

@@ -1,5 +1,5 @@
 //
-// Created by Сергей on 03.12.2021.
+// Created by Vadim on 03.12.2021.
 //
 
 #ifndef LAB13_1_FUNCTIONS_H
