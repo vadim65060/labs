@@ -20,6 +20,16 @@ double AreaCalculateLeftRectangle(struct funcdata data, double l, double r, size
 
 double AreaCalculateMiddleRectangle(struct funcdata data, double l, double r, size_t n) {
     double h = (r - l) * 1.0 / n;
+    double sum = 0;
+    for (int i = 1; i <= n - 1; i++) {
+        data.x = l + i * h + h / 2;
+        sum += data.func(data);
+    }
+    return sum * h;
+}
+
+double UnknownAreaCalculateFunc(struct funcdata data, double l, double r, size_t n){
+    double h = (r - l) * 1.0 / n;
     data.x = l;
     double sum = data.func(data);
     data.x = r;

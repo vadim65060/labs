@@ -43,7 +43,8 @@ int main() {
     PrintAndReadD("l=", l);
     PrintAndReadD("r=", r);
     PrintAndReadD("eps=", eps);
-    printf("%lf\n", AreaCalculateLeftRectangle(_funcdata, l, r, n));
-    printf("%lf\n", AreaCalculateMiddleRectangle(_funcdata, l, r, n));
-    printf("%lf\n", AreaCalculateForEps(_funcdata, l, r, eps, &AreaCalculateMiddleRectangle));
+    printf("Left:%lf\n", AreaCalculateLeftRectangle(_funcdata, l, r, n));
+    printf("Middle:%lf\n", AreaCalculateMiddleRectangle(_funcdata, l, r, n));
+    printf("UnknownFunc:%lf\n", UnknownAreaCalculateFunc(_funcdata, l, r, n));
+    printf("epsFunc:%lf\n", AreaCalculateForEps(_funcdata, l, r, eps, &AreaCalculateMiddleRectangle));
 }

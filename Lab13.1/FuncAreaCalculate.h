@@ -15,4 +15,6 @@ double AreaCalculateMiddleRectangle(struct funcdata data, double l, double r, si
 
 double AreaCalculateForEps(struct funcdata data, double l, double r, double eps, AreaCalculateFunc areaCalculateFunc);
 
+double UnknownAreaCalculateFunc(struct funcdata data, double l, double r, size_t n);
+
 #endif //LAB13_1_FUNCAREACALCULATE_H
