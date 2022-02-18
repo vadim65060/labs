@@ -14,7 +14,7 @@ int *IntArrayRead(int *array, size_t n) {
 }
 
 void IntArrayPrint(const int *array, size_t n) {
-    for (int *i = array; i != array + n; ++i) {
+    for (const int *i = array; i != array + n; ++i) {
         printf("%i ", *i);
     }
     printf("\n");
