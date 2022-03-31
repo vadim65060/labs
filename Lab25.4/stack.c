@@ -108,7 +108,7 @@ int ToString(int n, char *s) {
         ++i;
         s[i] = '\0';
     }
-    StrReverse(s,i);
+    StrReverse(s, i);
     return i;
 }
 
@@ -132,14 +132,15 @@ void StackToStr(Stack *stack, char *str, int maxSize) {
                 it += SCat(s, it, " ");
                 break;
         }
-        if(maxSize-it<50){
-            if(maxSize-it>10)
-                it +=SCat(s,it,"LowSize");
+        if (maxSize - it < 50) {
+            if (maxSize - it > 10)
+                it += SCat(s, it, "LowSize");
             break;
         }
     }
     s[it] = '\0';
-    if (str == NULL)
+    if (str == NULL) {
         printf("%s", s);
-
+        free(s);
+    }
 }
