@@ -141,4 +141,5 @@ void StackToStr(Stack *stack, char *str, int maxSize) {
     s[it] = '\0';
     if (str == NULL)
         printf("%s", s);
+
 }
