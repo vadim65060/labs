@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <malloc.h>
+#include <string.h>
 #include "stack.h"
+#include "PolishCalculator.h"
 
 int main() {
     size_t len = 1000;
@@ -8,14 +10,19 @@ int main() {
     //printf("%s\n",s);
     //getline(&s, &len, stdin);
     Stack *stack = StackInit();
-
-    int n;
-    scanf("%i", &n);
-    int ttt[n];
-    for (int i = 0; i < n; ++i) {
-        scanf("%i", &ttt[i]);
-        Push(stack,INT,&ttt[i]);
+    char com[100];
+    while (strcmp(com, "end") != 0) {
+        scanf("%s", com);
+        double tempI;
+        if (sscanf(com, "%lf", &tempI) == 1) {
+            Push(stack, tempI);
+        } else {
+            if (Calculate(stack, com) == 0)
+                StackToStr(stack, NULL, 1000);
+            else
+                printf("error\n");
+        }
     }
-    StackToStr(stack,s,1000);
-    printf("res=%s",s);
+
+    //printf("res=%s",s);
 }

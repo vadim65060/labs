@@ -7,19 +7,19 @@
 
 typedef struct Stack Stack;
 typedef struct Node Node;
-typedef struct Value Value;
-
-enum type {
-    INT, STR
+struct Stack {
+    size_t len;
+    Node *first, *last;
+    Node *current;
 };
 
 Stack *StackInit();
 
-Node *Push(Stack *stack, enum type valueType, void *value);
+Node *Push(Stack *stack, double value);
 
-void Pop(Stack *stack);
+double Pop(Stack *stack);
 
-Value Back(Stack *stack);
+double Back(Stack *stack);
 
 void StackDelete(Stack *stack);
 

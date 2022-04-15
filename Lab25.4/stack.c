@@ -4,30 +4,15 @@
 
 #include <stddef.h>
 #include <malloc.h>
-#include <string.h>
 #include <stdio.h>
 #include "stack.h"
 
 typedef struct Stack Stack;
 typedef struct Node Node;
-typedef struct Value Value;
-
-
-struct Value {
-    void *value;
-    enum type valueType;
-};
-
 
 struct Node {
-    Value value;
+    double value;
     Node *back, *next;
-};
-
-struct Stack {
-    size_t len;
-    Node *first, *last;
-    Node *current;
 };
 
 Stack *StackInit() {
@@ -39,39 +24,47 @@ Stack *StackInit() {
     return initStack;
 }
 
-Node *Push(Stack *stack, enum type valueType, void *value) {
+Node *Push(Stack *stack, double value) {
     Node *node = (Node *) malloc(sizeof(Node));
-    node->value.valueType = valueType;
-    node->value.value = value;
+    node->value = value;
     node->next = NULL;
     node->back = NULL;
     if (stack->len == 0) {
         stack->last = node;
         stack->first = node;
     } else {
+        node->back = stack->last;
         stack->last->next = node;
         stack->last = node;
     }
     stack->len++;
-    printf("in=%i\n", *(int *) (node->value.value));
     return node;
 }
 
-void Pop(Stack *stack) {
+double Pop(Stack *stack) {
+    if (stack->len == 0) {
+        return 0.0 / 0.0;
+    }
     Node *node = stack->last;
-    if (stack->len < 2) {
+    double value = node->value;
+    if (stack->len == 1) {
         stack->first = NULL;
+        stack->last = NULL;
         stack->len = 0;
-    } else {
-        stack->len--;
+        free(node);
+        return value;
     }
-    stack->last = NULL;
-    if (node != NULL) {
-        free(stack->last);
-    }
+    stack->last = node->back;
+    stack->last->next = NULL;
+    stack->len--;
+    free(node);
+    return value;
 }
 
-Value Back(Stack *stack) {
+double Back(Stack *stack) {
+    if (stack->len < 1) {
+        return 0.0 / 0.0;
+    }
     return stack->last->value;
 }
 
@@ -91,27 +84,6 @@ int SCat(char *inS, int n, const char *outS) {
     return r;
 }
 
-void StrReverse(char *s, int len) {
-    for (int i = 0; i < len / 2; ++i) {
-        char temp = s[i];
-        s[i] = s[len - i - 1];
-        s[len - i - 1] = temp;
-    }
-}
-
-int ToString(int n, char *s) {
-    int i = 0;
-    while (n) {
-        char c = '0' + n % 10;
-        SCat(s, i, &c);
-        n /= 10;
-        ++i;
-        s[i] = '\0';
-    }
-    StrReverse(s, i);
-    return i;
-}
-
 void StackToStr(Stack *stack, char *str, int maxSize) {
     char *s = str;
     int it = 0;
@@ -121,17 +93,11 @@ void StackToStr(Stack *stack, char *str, int maxSize) {
     }
     Node *node = stack->first;
     for (; node != NULL; node = node->next) {
-        char tempS[20];
-        switch (node->value.valueType) {
-            case STR:
-                it += SCat(s, it, node->value.value);
-                break;
-            case INT:
-                ToString(*(int *) (node->value.value), tempS);
-                it += SCat(s, it, tempS);
-                it += SCat(s, it, " ");
-                break;
-        }
+        char buffer[32];
+        gcvt(node->value, 32, buffer);
+        it += SCat(s, it, buffer);
+        char *temp = " ";
+        it += SCat(s, it, temp);
         if (maxSize - it < 50) {
             if (maxSize - it > 10)
                 it += SCat(s, it, "LowSize");
@@ -140,7 +106,7 @@ void StackToStr(Stack *stack, char *str, int maxSize) {
     }
     s[it] = '\0';
     if (str == NULL) {
-        printf("%s", s);
+        printf("%s\n", s);
         free(s);
     }
 }
