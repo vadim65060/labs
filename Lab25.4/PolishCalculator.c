@@ -47,6 +47,22 @@ int Calculate(Stack *stack, char *operation) {
         Push(stack, sin(Pop(stack)));
     } else if (strcmp(operation, "cos") == 0) {
         Push(stack, cos(Pop(stack)));
+    } else if (strcmp(operation, "sh") == 0) {
+        Push(stack, sinh(Pop(stack)));
+    } else if (strcmp(operation, "ch") == 0) {
+        Push(stack, cosh(Pop(stack)));
+    } else if (strcmp(operation, "arcsin") == 0) {
+        Push(stack, asin(Pop(stack)));
+    } else if (strcmp(operation, "arccos") == 0) {
+        Push(stack, acos(Pop(stack)));
+    } else if (strcmp(operation, "arcsh") == 0) {
+        Push(stack, asinh(Pop(stack)));
+    } else if (strcmp(operation, "arcch") == 0) {
+        Push(stack, acosh(Pop(stack)));
+    } else if (strcmp(operation, "sqrt") == 0) {
+        Push(stack, sqrt(Pop(stack)));
+    } else if (strcmp(operation, "exp") == 0) {
+        Push(stack, exp(Pop(stack)));
     } else {
         return 1;
     }
