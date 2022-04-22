@@ -78,6 +78,9 @@ void StackDelete(Stack *stack) {
 int SCat(char *inS, int n, const char *outS) {
     char *j = inS + n;
     for (const char *i = outS; *i != '\0'; ++i, ++j) {
+        if (*i=='.' && *(i+1)=='\0'){
+            break;
+        }
         *j = *i;
     }
     int r = j - inS - n;
