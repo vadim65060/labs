@@ -6,9 +6,6 @@
 
 int main() {
     size_t len = 1000;
-    char *s = (char *) malloc(len * sizeof(char));
-    //printf("%s\n",s);
-    //getline(&s, &len, stdin);
     Stack *stack = StackInit();
     char com[100];
     while (strcmp(com, "end") != 0) {
@@ -18,11 +15,9 @@ int main() {
             Push(stack, tempI);
         } else {
             if (Calculate(stack, com) == 0)
-                StackToStr(stack, NULL, 1000);
+                StackToStr(stack, NULL, len);
             else
                 printf("error\n");
         }
     }
-
-    //printf("res=%s",s);
 }
