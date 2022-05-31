@@ -1,3 +1,3 @@
 graphics lib install guide:
-  move graphics.h to \mingw\include
-  move libgdi32.a and libopenbgi.a to \mingw\lib
+  1. move graphics.h to \mingw\include
+  2. move libgdi32.a and libopenbgi.a to \mingw\lib
