@@ -1,55 +1,57 @@
 #ifndef RBT_H_INCLUDED
 #define RBT_H_INCLUDED
 
-/* Цвет узлов */
-typedef enum {RED,BLACK} rb_color;
+// Р¦РІРµС‚ СѓР·Р»РѕРІ
+typedef enum {
+    RED, BLACK
+} rb_color;
 
-/* Узел дерева */
-typedef struct rb_node
-{
-    int      key;
-    void    *data;
-    size_t   s;
+// РЈР·РµР» РґРµСЂРµРІР°
+typedef struct rb_node {
+    int key;
+    void *data;
+    size_t s;
     rb_color color;
     struct rb_node *left, *right, *parent;
 } rb_node;
 
-/* Дерево */
-typedef struct rb_tree
-{
+// Р”РµСЂРµРІРѕ
+typedef struct rb_tree {
     rb_node *root;
 } rb_tree;
 
-rb_tree *rb_alloc();// Создание дерева
+rb_tree *rb_alloc();
 
-void rb_node_clear (rb_node *n);// Рекурсивная очистка поддеревьев узла и самого узла
+void rb_node_clear(rb_node *n);
 
-void rb_free(rb_tree **t);// Удаление дерева из памяти
+void rb_free(rb_tree **t);
 
-rb_node * rb_search (rb_tree *t, int key);// Поиск в дереве по ключу
+rb_node *rb_search(rb_tree *t, int key);
 
-rb_node * rb_min (rb_tree *t);// Поиск узла с минимальным ключом
+rb_node *rb_min(rb_tree *t);
 
-rb_node * rb_max (rb_tree *t);// Поиск узла с максимальным ключом
+rb_node *rb_max(rb_tree *t);
 
-void rb_rotate_left (rb_tree *t, rb_node *x, int check);// Левое вращение дерева t вокруг узла x
+void rb_rotate_left(rb_tree *t, rb_node *x, int check);
 
-void rb_rotate_right (rb_tree *t, rb_node *x, int check);// Правое вращение дерева t вокруг узла x
+void rb_rotate_right(rb_tree *t, rb_node *x, int check);
 
-rb_node *rb_bst_insert (rb_tree *t, int key, const void *data, size_t s);
-/* Вставка элемента с ключом key и данными data размера s
- *         в дерево t как в простое дерево поиска
- * Возвращает указатель на вставленный элемент или NULL в случае неудачи
+rb_node *rb_bst_insert(rb_tree *t, int key, const void *data, size_t s);
+
+/* Р’СЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р° СЃ РєР»СЋС‡РѕРј key Рё РґР°РЅРЅС‹РјРё data СЂР°Р·РјРµСЂР° s
+ *         РІ РґРµСЂРµРІРѕ t РєР°Рє РІ РїСЂРѕСЃС‚РѕРµ РґРµСЂРµРІРѕ РїРѕРёСЃРєР°
+ * Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РІСЃС‚Р°РІР»РµРЅРЅС‹Р№ СЌР»РµРјРµРЅС‚ РёР»Рё NULL РІ СЃР»СѓС‡Р°Рµ РЅРµСѓРґР°С‡Рё
  */
 
-int rb_insert (rb_tree *t, int key, const void *data, size_t s);
-/* Вставка элемента с ключом key и данными data размера s в дерево t
- * Возвращает 0 в случае успеха, ненулевое значение в случае провала
+int rb_insert(rb_tree *t, int key, const void *data, size_t s);
+
+/* Р’СЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р° СЃ РєР»СЋС‡РѕРј key Рё РґР°РЅРЅС‹РјРё data СЂР°Р·РјРµСЂР° s РІ РґРµСЂРµРІРѕ t
+ * Р’РѕР·РІСЂР°С‰Р°РµС‚ 0 РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°, РЅРµРЅСѓР»РµРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ СЃР»СѓС‡Р°Рµ РїСЂРѕРІР°Р»Р°
  */
 
-int rb_delete (rb_tree *t, int key);
-/* Удаление элемента с ключом key из дерева t
- * Возвращает 0, если элемент удален, ненулевое значение, если элемента нет
+int rb_delete(rb_tree *t, int key);
+/* РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° СЃ РєР»СЋС‡РѕРј key РёР· РґРµСЂРµРІР° t
+ * Р’РѕР·РІСЂР°С‰Р°РµС‚ 0, РµСЃР»Рё СЌР»РµРјРµРЅС‚ СѓРґР°Р»РµРЅ, РЅРµРЅСѓР»РµРІРѕРµ Р·РЅР°С‡РµРЅРёРµ, РµСЃР»Рё СЌР»РµРјРµРЅС‚Р° РЅРµС‚
  */
 
 #endif // RBT_H_INCLUDED
