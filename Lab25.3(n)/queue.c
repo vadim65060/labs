@@ -69,6 +69,8 @@ queue *queue_divide(queue *q) {
         q->head = q->head->next;
         queue_insert_node(newQ, temp);
     }
+    if(q->head==NULL)
+        q->tail==NULL;
     node *it = q->head;
     while (it != NULL && it->next != NULL) {
         if (it->next->key % 2) {
@@ -81,6 +83,7 @@ queue *queue_divide(queue *q) {
             it = it->next;
         }
     }
+
     return newQ;
 }
 
