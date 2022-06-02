@@ -14,6 +14,8 @@ int main() {
     queue *newQ = queue_divide(q);
     queue_print(q);
     queue_print(newQ);
+    queue_insert(q,10);
+    queue_print(q);
     queue_free(q);
     queue_free(newQ);
 }

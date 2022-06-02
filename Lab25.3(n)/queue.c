@@ -53,9 +53,9 @@ int queue_pop(queue *q) {
 
 
 void queue_insert_node(queue *q, node *insertNode) {
-    if(q->head==NULL)
-        q->head=insertNode;
-    if(q->tail!=NULL)
+    if (q->head == NULL)
+        q->head = insertNode;
+    if (q->tail != NULL)
         q->tail->next = insertNode;
     q->tail = insertNode;
     q->tail->next = NULL;
@@ -73,6 +73,8 @@ queue *queue_divide(queue *q) {
     while (it != NULL && it->next != NULL) {
         if (it->next->key % 2) {
             node *temp = it->next;
+            if (it->next == q->tail)
+                q->tail = it;
             it->next = it->next->next;
             queue_insert_node(newQ, temp);
         } else {
