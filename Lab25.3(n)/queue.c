@@ -52,15 +52,29 @@ int queue_pop(queue *q) {
 }
 
 
-queue *merge_queue(queue *q) {
+void queue_insert_node(queue *q, node *insertNode) {
+    if(q->head==NULL)
+        q->head=insertNode;
+    if(q->tail!=NULL)
+        q->tail->next = insertNode;
+    q->tail = insertNode;
+    q->tail->next = NULL;
+}
+
+
+queue *queue_divide(queue *q) {
     queue *newQ = queue_alloc();
+    while (q->head != NULL && q->head->key % 2) {
+        node *temp = q->head;
+        q->head = q->head->next;
+        queue_insert_node(newQ, temp);
+    }
     node *it = q->head;
-    while (it != NULL) {
-        if (it->key % 2) {
-            queue_insert(newQ, it->key);
-            node *temp = it;
-            it = it->next;
-            queue_delete_node(q, temp);
+    while (it != NULL && it->next != NULL) {
+        if (it->next->key % 2) {
+            node *temp = it->next;
+            it->next = it->next->next;
+            queue_insert_node(newQ, temp);
         } else {
             it = it->next;
         }

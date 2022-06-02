@@ -9,8 +9,9 @@ int main() {
     queue_insert(q, 4);
     queue_insert(q, 5);
     queue_insert(q, 6);
+    queue_insert(q, 7);
     queue_print(q);
-    queue *newQ = merge_queue(q);
+    queue *newQ = queue_divide(q);
     queue_print(q);
     queue_print(newQ);
     queue_free(q);

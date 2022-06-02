@@ -22,7 +22,7 @@ queue *queue_insert(queue *q, int key);
 
 int queue_pop(queue *q);
 
-queue *merge_queue(queue *q);
+queue *queue_divide(queue *q);
 
 int queue_delete_node(queue *q, node *nodeToDel);
 
